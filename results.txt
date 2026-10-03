@@ -1,0 +1,75 @@
+==== machine details ====
+host      : mcw-ThinkPad-L14-Gen-3
+cpu       : 12th Gen Intel(R) Core(TM) i5-1235U
+cores     : 10 cores, 12 threads
+max freq  : 4400.0000 MHz
+L1d cache : 352 KiB (10 instances)
+L2 cache  : 6.5 MiB (4 instances)
+L3 cache  : 12 MiB (1 instance)
+memory    : 15Gi
+os        : Ubuntu 22.04.5 LTS
+kernel    : 6.8.0-138-generic
+compiler  : gcc (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+
+tile = 64, runs = 3 (best time is kept)
+
+---- matmul (-O2 -march=native), n = 512 ----
+n = 512, block size = 64, runs = 3
+
+version                 time(s)    speedup
+naive                    0.2531       1.00
+interchange              0.0386       6.56
+tiling                   0.0390       6.49
+unrolling                0.0350       7.23
+all combined             0.0249      10.16
+
+---- matmul (-O2 -march=native), n = 1024 ----
+n = 1024, block size = 64, runs = 3
+
+version                 time(s)    speedup
+naive                    2.6513       1.00
+interchange              0.3671       7.22
+tiling                   0.3231       8.21
+unrolling                0.3347       7.92
+all combined             0.1950      13.60
+
+---- matmul (-O2 -march=native), n = 2048 ----
+n = 2048, block size = 64, runs = 3
+
+version                 time(s)    speedup
+naive                   78.7570       1.00
+interchange              4.8578      16.21
+tiling                   3.8332      20.55
+unrolling                4.7117      16.72
+all combined             2.3521      33.48
+
+---- matmul_noopt (-O0), n = 512 ----
+n = 512, block size = 64, runs = 3
+
+version                 time(s)    speedup
+naive                    0.3740       1.00
+interchange              0.3204       1.17
+tiling                   0.3561       1.05
+unrolling                0.2788       1.34
+all combined             0.1565       2.39
+
+---- matmul_noopt (-O0), n = 1024 ----
+n = 1024, block size = 64, runs = 3
+
+version                 time(s)    speedup
+naive                    3.9040       1.00
+interchange              2.5207       1.55
+tiling                   2.5132       1.55
+unrolling                2.2096       1.77
+all combined             1.2233       3.19
+
+---- matmul_noopt (-O0), n = 2048 ----
+n = 2048, block size = 64, runs = 3
+
+version                 time(s)    speedup
+naive                   62.3487       1.00
+interchange             22.6912       2.75
+tiling                  22.2991       2.80
+unrolling               20.1169       3.10
+all combined            10.6979       5.83
+
